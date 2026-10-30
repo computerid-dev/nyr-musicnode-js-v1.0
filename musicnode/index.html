@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NYR Music Node</title>
+  <script>
+    (function () {
+      var ALLOWED_HOSTS = ["nyr-musicnode-js-v1.vercel.app"];
+      if (ALLOWED_HOSTS.indexOf(window.location.hostname) === -1) {
+        window.location.replace("../index.html");
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <h1 class="topbar__title">NYR MUSIC NODE</h1>
+      <span class="badge badge--blue">V1</span>
+    </div>
+  </header>
+
+  <main class="container main">
+    <section class="panel" aria-labelledby="search-heading">
+      <h2 id="search-heading" class="panel__title">CARI LAGU</h2>
+      <form id="search-form" class="search" novalidate>
+        <label class="sr-only" for="search-input">Judul lagu atau nama artis</label>
+        <input id="search-input" class="input" type="search" name="query"
+               placeholder="Judul lagu atau nama artis" maxlength="100"
+               autocomplete="off" required>
+        <button id="search-btn" class="btn" type="submit">CARI</button>
+      </form>
+      <div class="chips" aria-label="Contoh pencarian">
+        <span class="chips__label">COBA:</span>
+        <button class="btn btn--sm chip" type="button" data-query="Believer">Believer</button>
+        <button class="btn btn--sm chip" type="button" data-query="Coldplay">Coldplay</button>
+        <button class="btn btn--sm chip" type="button" data-query="Arijit Singh">Arijit Singh</button>
+        <button class="btn btn--sm chip" type="button" data-query="Shape of You">Shape of You</button>
+      </div>
+    </section>
+
+    <p id="status" class="status" role="status" aria-live="polite" hidden></p>
+
+    <section id="results" class="grid" aria-label="Hasil pencarian"></section>
+
+    <div class="more-wrap">
+      <button id="more-btn" class="btn btn--blue" type="button" hidden>MUAT LAGI</button>
+    </div>
+  </main>
+
+  <footer class="container footer">
+    <p>NYR Music Node v1. Data dari JioSaavn lewat API tidak resmi, untuk penggunaan pribadi.</p>
+  </footer>
+
+  <section id="player" class="player" aria-label="Pemutar musik" hidden>
+    <div class="player__row">
+      <div class="player__now">
+        <img id="player-cover" class="player__cover" alt="" width="64" height="64">
+        <div class="player__text">
+          <p id="player-title" class="player__title"></p>
+          <p id="player-artist" class="player__artist"></p>
+        </div>
+      </div>
+
+      <div class="player__controls">
+        <button id="btn-prev" class="btn btn--sm" type="button">PREV</button>
+        <button id="btn-toggle" class="btn btn--sm btn--green" type="button">PUTAR</button>
+        <button id="btn-next" class="btn btn--sm" type="button">NEXT</button>
+        <button id="btn-repeat" class="btn btn--sm" type="button">ULANG: MATI</button>
+      </div>
+
+      <div class="player__seek">
+        <span id="time-current" class="time">0:00</span>
+        <div class="slider">
+          <div id="seek-fill" class="slider__fill"></div>
+          <input id="seek" type="range" min="0" max="1000" step="1" value="0" aria-label="Posisi lagu">
+        </div>
+        <span id="time-total" class="time">0:00</span>
+      </div>
+
+      <div class="player__extra">
+        <label class="field-label" for="quality">KUALITAS</label>
+        <select id="quality" class="select"></select>
+        <label class="field-label" for="volume">VOLUME</label>
+        <div class="slider slider--volume">
+          <div id="volume-fill" class="slider__fill"></div>
+          <input id="volume" type="range" min="0" max="100" step="1" value="100" aria-label="Volume">
+        </div>
+        <a id="download-link" class="btn btn--sm btn--blue" href="#" target="_blank" rel="noopener noreferrer">BUKA FILE</a>
+      </div>
+    </div>
+    <p id="player-message" class="player__message" role="alert" hidden></p>
+  </section>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
