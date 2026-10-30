@@ -1,0 +1,9 @@
+Project ini TIDAK membutuhkan environment variable di Vercel.
+
+Backend memakai endpoint publik JioSaavn tanpa API key, dan tidak ada
+token atau secret di frontend maupun di kode.
+
+Jika nanti ditambah fitur yang butuh secret, tulis di sini dengan format:
+
+  Key: NAMA_VARIABEL
+  Value: (isi sendiri)
